@@ -29,6 +29,7 @@ class Book {
       title = '';
       author = '';
       this.displayAllBooks();
+      this.lastId += 1;
     }
   }
 
