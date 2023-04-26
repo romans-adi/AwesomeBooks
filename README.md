@@ -25,7 +25,7 @@
 
 # 📖 <a name="about-project">Hello Microverse</a>
 
-Mid-fidelity app prototype that allows user to add and/or remove books to/from list. Only one class with defined methods used.
+Mid-fidelity app prototype that allows user to add and/or remove books to/from list. Only one class with defined methods used. All data stored in local storage.
 
 ## 🛠 Built With <a name="built-with"></a>
 

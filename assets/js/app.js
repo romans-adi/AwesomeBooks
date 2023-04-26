@@ -73,12 +73,11 @@ form.addEventListener('submit', (event) => {
   }
 });
 
-//Display date
+// Display date
 
 const dateContainer = document.getElementById('dateContainer');
-let currentDate = new Date();
+const currentDate = new Date();
 dateContainer.innerHTML = currentDate.toLocaleString('en-US');
-
 
 // Show books' list
 navList.addEventListener('click', () => {
