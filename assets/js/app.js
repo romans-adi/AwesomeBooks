@@ -1,75 +1,116 @@
+const form = document.getElementById('form');
+const allBooks = document.getElementById('book_list');
+const messageField = document.getElementById('messageField');
+const contact = document.getElementById('contact');
+const navList = document.getElementById('nav-list');
+const navAdd = document.getElementById('nav-add');
+const navContact = document.getElementById('nav-contact');
+
+let bookList = JSON.parse(localStorage.getItem('BooksList')) || []; // global variable to store from localStorage
+
+// Book class
 class Book {
   constructor() {
-    const storedBooks = localStorage.getItem('books');
-    this.books = storedBooks ? JSON.parse(storedBooks) : [];
-    this.lastId = (this.books.length > 0)
-      ? this.books[this.books.length - 1].id : 0;
+    this.bookTitle = document.getElementById('title');
+    this.bookAuthor = document.getElementById('author');
+  }
+
+  // Remove book function takes 'book' parameter from 'displayAllBooks' function and
+  // removes only that element and update local Storage
+  removeBook(book) {
+    bookList = bookList.filter((element) => element !== book);
+    localStorage.setItem('BooksList', JSON.stringify(bookList));
     this.displayAllBooks();
   }
 
-  addBook() {
-    let title = document.getElementById('title').value;
-    let author = document.getElementById('author').value;
-    if (title.trim() === '' || author.trim() === '') {
-      const err = document.createElement('div');
-      err.classList.add('error');
-      err.textContent = 'Please enter a title and an author';
-      setTimeout(() => err.remove(), 3500);
-      document.body.appendChild(err);
-    } else if (this.books.some((book) => book.title === title)) {
-      const err = document.createElement('div');
-      err.classList.add('error');
-      err.textContent = 'This book already exists';
-      setTimeout(() => err.remove(), 3500);
-      document.body.appendChild(err);
-    } else {
-      const book = { id: this.lastId + 1, title, author };
-      this.books.push(book);
-      localStorage.setItem('books', JSON.stringify(this.books));
-      title = '';
-      author = '';
-      this.displayAllBooks();
-      this.lastId += 1;
-    }
-  }
-
-  removeBook(bookId) {
-    this.books = this.books.filter((book) => book.id !== bookId);
-    localStorage.setItem('books', JSON.stringify(this.books));
-  }
-
+  // Clears any previous book list and loops through each book element creating the elements and
+  // calling the 'removeBook' function when user clicks the remove btn
   displayAllBooks() {
-    const bookList = document.getElementById('book-list');
-    bookList.innerHTML = '';
-    this.books.forEach((book) => {
+    allBooks.innerHTML = '';
+    bookList.forEach((book) => {
       const bookListItem = document.createElement('li');
-      const bookListInner = document.createElement('div');
-      bookListInner.classList.add('book-list-inner');
-      bookListInner.innerHTML = `${book.title} by ${book.author}`;
-      bookListItem.setAttribute('id', book.id);
-      if (bookListItem.id % 2 !== 0) {
-        bookListInner.style.backgroundColor = '#e3e3e3';
-      }
+      bookListItem.innerHTML = `"${book.bookTitle}" by ${book.bookAuthor}`;
       const btnRemove = document.createElement('button');
-      btnRemove.classList.add('remove-btn');
-      btnRemove.textContent = 'Remove';
-      btnRemove.addEventListener('click', () => {
-        this.removeBook(book.id);
-        this.displayAllBooks();
-      });
-      bookListInner.appendChild(btnRemove);
-      bookListItem.appendChild(bookListInner);
-      bookList.appendChild(bookListItem);
+      btnRemove.innerHTML = 'Remove';
+      btnRemove.className = 'removeButton';
+      btnRemove.addEventListener('click', () => this.removeBook(book));
+      bookListItem.appendChild(btnRemove);
+      allBooks.appendChild(bookListItem);
+      this.bookTitle.value = '';
+      this.bookAuthor.value = '';
     });
+  }
+
+  // receive the parameters and create an object from them to push it to the
+  // global 'bookList' variable and update local Storage then display all books
+  addBook(bookTitle, bookAuthor) {
+    const newBook = { bookTitle, bookAuthor };
+    bookList.push(newBook);
+    localStorage.setItem('BooksList', JSON.stringify(bookList));
+    this.displayAllBooks();
+    this.bookTitle.value = '';
+    this.bookAuthor.value = '';
   }
 }
 
 const newBook = new Book();
+newBook.displayAllBooks(); // display all books by default
 
-const addBtn = document.getElementById('submit-btn');
-
-addBtn.addEventListener('click', (event) => {
+// Listen when form is busmitted and call addBook function with parameters then display all books
+// if not empty and show error message if it is
+form.addEventListener('submit', (event) => {
   event.preventDefault();
-  newBook.addBook();
-  newBook.displayAllBooks();
+  const bookTitle = document.getElementById('title');
+  const bookAuthor = document.getElementById('author');
+
+  if (bookTitle.value !== '' && bookAuthor.value !== '') {
+    newBook.addBook(bookTitle.value, bookAuthor.value);
+    bookList = JSON.parse(localStorage.getItem('BooksList')) || [];
+    newBook.displayAllBooks();
+    messageField.textContent = '';
+  } else {
+    messageField.textContent = 'Please enter a book name and an author';
+  }
 });
+
+//Display date
+
+const dateContainer = document.getElementById('dateContainer');
+let currentDate = new Date();
+dateContainer.innerHTML = currentDate.toLocaleString('en-US');
+
+
+// Show books' list
+navList.addEventListener('click', () => {
+  allBooks.classList.remove('hidden');
+  form.classList.add('hidden');
+  contact.classList.add('hidden');
+  contact.classList.remove('flex');
+});
+
+// Show add section
+
+navAdd.addEventListener('click', () => {
+  allBooks.classList.add('hidden');
+  form.classList.remove('hidden');
+  contact.classList.add('hidden');
+  contact.classList.remove('flex');
+});
+
+// Show Contact
+
+navContact.addEventListener('click', () => {
+  allBooks.classList.add('hidden');
+  form.classList.add('hidden');
+  contact.classList.remove('hidden');
+  contact.classList.add('flex');
+});
+
+// Show informational message about no books in the list
+
+if (bookList.length === 0) {
+  allBooks.innerHTML = 'You have no books in your list';
+  allBooks.style.padding = '10px';
+} else {
+  allBooks.style.padding = '0px';
+}

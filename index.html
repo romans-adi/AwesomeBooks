@@ -6,21 +6,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>All Awesome Books</title>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h1>All Awesome Books</h1>
-  <ul id="book-list"></ul>
-  <form action="" id="form">
-    <h2>Add a New Book</h2>
+  <div class="wrapper">
+    <header>
+  <nav>
+    <h1>Awesome books</h1>
+    <ul class="nav-menu">
+      <li class="nav-item" id="nav-list">List</li>
+      <hr>
+      <li class="nav-item" id="nav-add">Add New</li>
+      <hr>
+      <li class="nav-item" id="nav-contact">Contact</li>
+    </ul>
+  </nav>
+  <span class="date" id="dateContainer"></span>
+</header>
+  <main class="container">
+  <ul id="book_list" class=""></ul>
+  <form action="" id="form" class="hidden">
+    <h2>Add a new book</h2>
     <div class="inputContainer">
       <input type="text" id="title" placeholder="Title">
       <input type="text" id="author" placeholder="Author">
-      <button id="submit-btn" class="btn-add" type="submit">Add</button>
+      <button id="submit_btn" class="btn-add" type="submit">Add Book</button>
     </div>
+    <span id="messageField"></span>
   </form>
+  <div class="contact hidden" id="contact">
+    <h2>Contact Information</h2>
+    <p>Do you have any questions or just want to say "Hello?" <br />
+      You can reach out to us!
+      <ul class="contact-list">
+        <li>Our E-mail: email@email.com</li>
+        <li>Our Phone: 00000000</li>
+        <li>Our Address: Streetname 22, 84503 City, Country</li>
+      </ul>
+    </p>
+  </div>
+</main>
+<footer>Copyright ..</footer>
 </div>
   <script src="assets/js/app.js"></script>
-
 </body>
 </html>
