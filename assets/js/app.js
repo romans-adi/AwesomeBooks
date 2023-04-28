@@ -67,17 +67,26 @@ form.addEventListener('submit', (event) => {
     newBook.addBook(bookTitle.value, bookAuthor.value);
     bookList = JSON.parse(localStorage.getItem('BooksList')) || [];
     newBook.displayAllBooks();
-    messageField.textContent = '';
+    messageField.textContent = 'Book added succesfully!';
+    messageField.style.color = 'black';
   } else {
-    messageField.textContent = 'Please enter a book name and an author';
+    messageField.textContent = 'Please enter a book and an author';
+    messageField.style.color = 'red';
   }
 });
 
-// Display date
+// Display date function
+function displayCurrentDateTime() {
+  const now = new Date();
+  const formattedDateTime = now.toLocaleString();
+  const currentDateTimeElement = document.getElementById('current-date-time');
+  currentDateTimeElement.textContent = formattedDateTime;
+}
+// call display date on page load
+displayCurrentDateTime();
 
-const dateContainer = document.getElementById('dateContainer');
-const currentDate = new Date();
-dateContainer.innerHTML = currentDate.toLocaleString('en-US');
+// Refresh date and time every second
+setInterval(displayCurrentDateTime, 1000);
 
 // Show books' list
 navList.addEventListener('click', () => {
@@ -94,6 +103,7 @@ navAdd.addEventListener('click', () => {
   form.classList.remove('hidden');
   contact.classList.add('hidden');
   contact.classList.remove('flex');
+  messageField.textContent = '';
 });
 
 // Show Contact
@@ -105,11 +115,7 @@ navContact.addEventListener('click', () => {
   contact.classList.add('flex');
 });
 
-// Show informational message about no books in the list
-
 if (bookList.length === 0) {
   allBooks.innerHTML = 'You have no books in your list';
   allBooks.style.padding = '10px';
-} else {
-  allBooks.style.padding = '0px';
 }

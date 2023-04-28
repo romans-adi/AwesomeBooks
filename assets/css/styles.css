@@ -53,7 +53,7 @@ nav h1 {
   padding: 5px 0;
 }
 
-.date {
+#current-date-time {
   display: flex;
   justify-content: flex-end;
   padding-right: 5%;
@@ -70,6 +70,11 @@ main {
   display: flex;
   cursor: pointer;
   padding: 0 20px;
+  font-size: 1.2rem;
+}
+
+.nav-item:hover {
+  color: #757575;
 }
 
 .nav-menu hr {
@@ -145,7 +150,6 @@ input {
 }
 
 #messageField {
-  color: red;
   font-size: 1.25rem;
 }
 
@@ -164,11 +168,12 @@ input {
 }
 
 footer {
-  border: 2px solid #000;
+  border: 3px solid black;
   display: flex;
   flex-direction: column;
   width: 90%;
   padding: 1%;
   margin-bottom: 1%;
   place-self: center;
+  font-size: 1.25rem;
 }
