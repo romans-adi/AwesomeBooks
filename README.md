@@ -8,7 +8,6 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Install](#install)
@@ -25,7 +24,7 @@
 
 # 📖 <a name="about-project">Hello Microverse</a>
 
-Mid-fidelity app prototype that allows user to add and/or remove books to/from list. Only one class with defined methods used. All data stored in local storage.
+Simple mid-fidelity single-page application (SPA) that allows user to add and/or remove books to/from list. Only one class with defined methods used. All data stored in local storage.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -46,24 +45,6 @@ Mid-fidelity app prototype that allows user to add and/or remove books to/from l
 <li>Based on JavaScript classes and methods</li>
 <li>Data is preserved in the browser's memory by using local storage</li>
   </ul>
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LIVE DEMO -->
-
-## 🚀 Live Demo <a name="live-demo" target="_blank"></a>
-
-- [Online version of my project](#)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- VIDEO PRESENTATION -->
-
-## :video_camera: Video Presentation <a name="video-presentation" target="_blank"></a>
-
-  :exclamation: **OUTDATED** :exclamation:
-
-- [Video Presentation](#)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -133,6 +114,10 @@ You can deploy this project using:
 - GitHub: [@romans-adi](https://github.com/romans-adi/)
 - Twitter: [@obj583](https://twitter.com/obj583/)
 - LinkedIn: [Romans Špiļaks](https://www.linkedin.com/in/obj513/)
+
+👤 **EddxSotz**
+
+- GitHub: [@EddxSotz](https://github.com/EddxSotz/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
